@@ -24,11 +24,14 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build debug APK
-        run: ./gradlew assembleFossUniversalDebug
+      - name: Show all APK tasks
+        run: ./gradlew tasks --all | grep assemble
 
-      - name: Upload debug APK
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: M3Play-foss-universal-debug
-          path: app/build/outputs/apk/**/debug/*.apk
+          name: M3Play-debug-apk
+          path: app/build/outputs/apk/**/*.apk
